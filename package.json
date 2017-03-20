@@ -7,10 +7,17 @@
     "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "axios": "^0.15.3",
-    "cross-env": "^3.2.3",
     "laravel-mix": "^0.8.3",
     "vue": "^2.1.10"
+  },
+  "devDependencies": {
+    "cross-env": "^3.2.3",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.2"
   }
 }
