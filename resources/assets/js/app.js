@@ -13,7 +13,7 @@ axios.defaults.headers.common = {
 };
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   routes,
 });
 
