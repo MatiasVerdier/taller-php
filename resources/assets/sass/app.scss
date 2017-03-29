@@ -2,6 +2,9 @@
 // Variables
 @import "variables";
 
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
 body {
-  background-color: $body-bg;
+  background-color: $gray-lighter;
 }
