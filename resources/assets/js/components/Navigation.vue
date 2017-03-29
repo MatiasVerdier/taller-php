@@ -16,6 +16,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
+              <router-link to="/explore">Explorar</router-link>
+            </li>
+            <li>
               <a href="#services">Services</a>
             </li>
             <li>
