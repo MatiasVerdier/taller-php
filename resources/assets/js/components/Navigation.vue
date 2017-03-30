@@ -27,7 +27,9 @@
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Login</a></li>
+            <li>
+              <router-link to="/authenticate">Login</router-link>
+            </li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
