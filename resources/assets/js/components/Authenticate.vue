@@ -19,17 +19,19 @@
 </template>
 
 <script>
+/* global localStorage */
 import api from '../api';
+
 export default {
   data() {
     return {
       email: '',
-      password: ''
-    }
+      password: '',
+    };
   },
   methods: {
     submitForm() {
-      let { email, password } = this;
+      const { email, password } = this;
       api.login({ email, password })
         .then(({ data }) => {
           this.saveToken(data);
@@ -37,12 +39,10 @@ export default {
         .catch(error => console.log(error.response));
     },
     saveToken(token) {
-      console.log('Auth token', token);
       localStorage.setItem('token', token);
-      console.log('Token saved');
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="css">
