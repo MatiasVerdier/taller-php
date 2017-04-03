@@ -12,7 +12,8 @@
     "bootstrap-sass": "^3.3.7",
     "laravel-mix": "^0.8.3",
     "vue": "^2.1.10",
-    "vue-router": "^2.3.0"
+    "vue-router": "^2.3.0",
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "cross-env": "^3.2.3",
