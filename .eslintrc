@@ -3,6 +3,9 @@
   "plugins": [
     "html"
   ],
+  "rules": {
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }]
+  },
   "globals": {
     "localStorage": false
   }
