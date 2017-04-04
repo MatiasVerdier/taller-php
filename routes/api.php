@@ -23,3 +23,5 @@ Route::get('/resources/{resource}', 'ResourceController@show');
 Route::post('/register', 'JWTController@register');
 Route::post('/login', 'JWTController@login');
 Route::post('/logout', 'JWTController@logout');
+
+Route::get('/me', 'JWTController@getUser');
