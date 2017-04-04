@@ -38,6 +38,12 @@ export default {
         this.$store.commit(types.LOGIN_SUCCESS);
         localStorage.setItem('token', data);
         this.$router.push({ path: '/' });
+        
+        this.$store.dispatch('getUser').then((response) => {
+          const user = response.data;
+          this.$store.commit(types.GET_USER_SUCCESS, { user });
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        });
       })
       .catch(error => this.$store.commit(types.LOGIN_FAILURE, error.response));
     },
