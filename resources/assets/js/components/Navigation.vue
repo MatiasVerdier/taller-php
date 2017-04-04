@@ -27,8 +27,11 @@
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li v-if="!isAuthenticated">
               <router-link to="/authenticate">Login</router-link>
+            </li>
+            <li v-else>
+              <a href="#" @click.prevent="logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -39,7 +42,16 @@
 </template>
 
 <script>
-export default {};
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+  methods: {
+    ...mapActions(['logout']),
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'currentUser']),
+  },
+};
 </script>
 
 <style lang="css">

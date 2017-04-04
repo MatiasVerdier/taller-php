@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="Authenticate">
-    <form class="form-signin" @submit.prevent="submitForm">
+    <form class="form-signin" @submit.prevent="login">
         <h2 class="form-signin-heading">Entrar al sitio</h2>
         <label for="inputEmail" class="sr-only">Email</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus v-model="email">
@@ -10,17 +10,16 @@
         
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="remember-me"> Recordarme
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       </form>
   </div>
 </template>
 
 <script>
-/* global localStorage */
-import api from '../api';
+import * as types from '../store/mutation-types';
 
 export default {
   data() {
@@ -30,16 +29,17 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      const { email, password } = this;
-      api.login({ email, password })
-        .then(({ data }) => {
-          this.saveToken(data);
-        })
-        .catch(error => console.log(error.response));
-    },
-    saveToken(token) {
-      localStorage.setItem('token', token);
+    login() {
+      this.$store.dispatch('login', {
+        email: this.email,
+        password: this.password,
+      })
+      .then(({ data }) => {
+        this.$store.commit(types.LOGIN_SUCCESS);
+        localStorage.setItem('token', data);
+        this.$router.push({ path: '/' });
+      })
+      .catch(error => this.$store.commit(types.LOGIN_FAILURE, error.response));
     },
   },
 };
