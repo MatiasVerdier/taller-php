@@ -1,13 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import * as actions from './actions';
+import * as getters from './getters';
+import mutations from './mutations';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    isAuthenticated: false,
+    isAuthenticated: !!localStorage.getItem('token'),
     currentUser: {},
   },
+  actions,
+  getters,
+  mutations,
 });
 
 export default store;
