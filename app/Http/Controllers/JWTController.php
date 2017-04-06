@@ -12,16 +12,16 @@ class JWTController extends Controller
 {
   public function register()
   {
-    $data = request(['name', 'email', 'password']);
+    $data = request(['username', 'email', 'password']);
     
     $this->validate(request(), [
-      'name' => 'required',
+      'username' => 'required',
       'email' => 'required|email|unique:users',
       'password' => 'required'
     ]);
     
     $user = User::create([
-        'name' => $data['name'],
+        'name' => $data['username'],
         'email' => $data['email'],
         'password' => bcrypt($data['password']),
     ]);
