@@ -17,7 +17,8 @@ class CreateResourcesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('type');
-            $table->text('description');
+            $table->string('description');
+            $table->text('content');
             $table->integer('user_id');
             $table->timestamps();
         });
