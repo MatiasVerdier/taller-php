@@ -13,12 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('jwt.auth')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('/resources', 'ResourceController@index');
+Route::post('/resources', 'ResourceController@store');
 Route::get('/resources/{resource}', 'ResourceController@show');
+Route::put('/resources/{resource}', 'ResourceController@update');
+Route::delete('/resources/{resource}', 'ResourceController@destroy');
 
 Route::post('/register', 'JWTController@register');
 Route::post('/login', 'JWTController@login');
