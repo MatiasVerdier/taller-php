@@ -21,7 +21,7 @@ class JWTController extends Controller
     ]);
     
     $user = User::create([
-        'name' => $data['username'],
+        'username' => $data['username'],
         'email' => $data['email'],
         'password' => bcrypt($data['password']),
     ]);
