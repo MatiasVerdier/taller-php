@@ -2,8 +2,10 @@ import * as types from './mutation-types';
 import api from '../api';
 
 export const login = ({ commit }, credentials) => {
+  const { username, email, password, isLogin } = credentials;
   commit(types.LOGIN);
-  return api.login(credentials);
+  
+  return isLogin ? api.login({ email, password }) : api.register({ username, email, password });
 };
 
 export const logout = ({ commit }) => {
