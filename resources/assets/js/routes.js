@@ -3,9 +3,9 @@ import Explore from './components/Explore.vue';
 import Authenticate from './components/Authenticate.vue';
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/explore', component: Explore },
-  { path: '/authenticate', component: Authenticate },
+  { path: '/', name: 'home', component: Home },
+  { path: '/explore', name: 'explore', component: Explore },
+  { path: '/authenticate', name: 'login', component: Authenticate },
 ];
 
 export default routes;
