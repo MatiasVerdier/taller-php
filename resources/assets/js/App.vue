@@ -20,5 +20,8 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style scoped>
+#main {
+  padding-top: 60px;
+}
 </style>

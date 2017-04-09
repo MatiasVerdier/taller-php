@@ -1,43 +1,32 @@
 <template lang="html">
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          
-          <router-link class="navbar-brand" to="/">Home</router-link>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li>
-              <router-link to="/explore">Explorar</router-link>
-            </li>
-            <li>
-              <a href="#services">Services</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
-          
-          <ul class="nav navbar-nav navbar-right">
-            <li v-if="!isAuthenticated">
-              <router-link to="/authenticate">Login</router-link>
-            </li>
-            <li v-else>
-              <a href="#" @click.prevent="logout">Logout</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
+  <nav class="main-navigation" role="navigation">
+    <Menu mode="horizontal" theme="dark" :active-name="activeRoute" @on-select="onMenuSelect">
+      <div class="left-menu">
+        <Menu-item name="home">
+          <Icon type="home"></Icon>
+          Home
+        </Menu-item>
+        
+        <Menu-item name="explore">
+          <Icon type="eye"></Icon>
+          Explorar
+        </Menu-item>
+      </div>
+      
+      <div class="right-menu">
+        <Menu-item name="profile">
+          <Icon type="settings"></Icon>
+          Settings
+        </Menu-item>
+        
+        <Menu-item v-if="!isAuthenticated" name="login">
+          Login
+        </Menu-item>
+        <Menu-item v-else name="logout">
+          Logout
+        </Menu-item>
+      </div>
+    </Menu>
   </nav>
 </template>
 
@@ -47,12 +36,29 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   methods: {
     ...mapActions(['logout']),
+    onMenuSelect(name) {
+      if (name === 'logout') {
+        this.logout();
+      } else {
+        this.$router.push({ name });
+      }
+    },
   },
   computed: {
     ...mapGetters(['isAuthenticated', 'currentUser']),
+    activeRoute() {
+      return this.$route.name;
+    },
   },
 };
 </script>
 
-<style lang="css">
+<style scoped>
+.main-navigation {
+  position: fixed;
+  width: 100%;
+}
+.right-menu {
+  float: right;
+}
 </style>
