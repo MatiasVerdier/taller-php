@@ -2,13 +2,6 @@
 // Variables
 @import "variables";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
 body {
   background-color: $gray-lighter;
-}
-
-.App {
-  margin-top: $navbar-height;
 }
