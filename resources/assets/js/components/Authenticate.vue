@@ -62,7 +62,7 @@ export default {
       .then(({ data }) => {
         this.$store.commit(types.LOGIN_SUCCESS);
         localStorage.setItem('token', data);
-        this.$router.push({ path: '/' });
+        this.$router.push({ name: 'dashboard' });
         
         this.$store.dispatch('getUser').then((response) => {
           const user = response.data;

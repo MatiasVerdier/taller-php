@@ -14,16 +14,18 @@
       </div>
       
       <div class="right-menu">
-        <Menu-item name="profile">
-          <Icon type="settings"></Icon>
-          Settings
-        </Menu-item>
-        
-        <Menu-item v-if="!isAuthenticated" name="login">
+        <template v-if="isAuthenticated">
+          <Menu-item name="dashboard">
+            <Icon type="speedometer"></Icon>
+            Dashboard
+          </Menu-item>
+          
+          <Menu-item name="logout">
+            Logout
+          </Menu-item>
+        </template>
+        <Menu-item v-else name="login">
           Login
-        </Menu-item>
-        <Menu-item v-else name="logout">
-          Logout
         </Menu-item>
       </div>
     </Menu>
