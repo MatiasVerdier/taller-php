@@ -1,30 +1,34 @@
 <template lang="html">
   <div class="Authenticate">
-    <form class="form-signin" @submit.prevent="login">
-        <h2 class="form-signin-heading">Entrar al sitio</h2>
+    <Card class="login-card">
+      <Form :model="form">
+        <h2>Entrar al sitio</h2>
+          
+        <Form-item label="Nombre de usuario" v-if="!form.isLogin">
+          <Input size="large" v-model="form.username" placeholder="Tu nombre de usuario único"></Input>
+        </Form-item>
         
-        <div class="form-group" v-if="!isLogin">
-          <label for="inputUsername" class="sr-only">Nombre de usuario</label>
-          <input type="text" id="inputUsername" class="form-control" placeholder="Nombre de usuario" required v-model="username">
-        </div>
+        <Form-item label="Email">
+          <Input size="large" v-model="form.email" placeholder="Tu dirección de correo"></Input>
+        </Form-item>
         
-        <div class="form-group">
-          <label for="inputEmail" class="sr-only">Email</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus v-model="email">
-        </div>
+        <Form-item label="Contraseña">
+          <Input type="password" size="large" v-model="form.password" placeholder="Tu contraseña super secreta"></Input>
+        </Form-item>
         
-        <div class="form-group">
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="password">
-        </div>
-        
-        <div class="form-group">
-          <a href="#" @click.prevent="isLogin = false" v-if="isLogin">No tienes cuenta?</a>
-          <a href="#" @click.prevent="isLogin = true" v-else="isLogin">Ya tienes cuenta?</a>
-        </div>
-        
-        <button class="btn btn-lg btn-primary btn-block" type="submit">{{buttonText}}</button>
-      </form>
+        <Row type="flex" justify="center">
+          <div>
+            <a href="#" @click.prevent="form.isLogin = false" v-if="form.isLogin">No tienes cuenta?</a>
+            <a href="#" @click.prevent="form.isLogin = true" v-else="form.isLogin">Ya tienes cuenta?</a>
+          </div>
+        </Row>
+        <Row type="flex" justify="center">
+          <Button type="primary" @click="login">
+            {{buttonText}}
+          </Button>
+        </Row>
+      </Form>
+    </Card>
   </div>
 </template>
 
@@ -34,24 +38,26 @@ import * as types from '../store/mutation-types';
 export default {
   data() {
     return {
-      username: '',
-      email: '',
-      password: '',
-      isLogin: true,
+      form: {
+        username: '',
+        email: '',
+        password: '',
+        isLogin: true,
+      },
     };
   },
   computed: {
     buttonText() {
-      return this.isLogin ? 'Entrar' : 'Crear cuenta';
+      return this.form.isLogin ? 'Entrar' : 'Crear cuenta';
     },
   },
   methods: {
     login() {
       this.$store.dispatch('login', {
-        username: this.username,
-        email: this.email,
-        password: this.password,
-        isLogin: this.isLogin,
+        username: this.form.username,
+        email: this.form.email,
+        password: this.form.password,
+        isLogin: this.form.isLogin,
       })
       .then(({ data }) => {
         this.$store.commit(types.LOGIN_SUCCESS);
@@ -70,39 +76,9 @@ export default {
 };
 </script>
 
-<style lang="css">
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+<style scoped>
+.login-card {
+  max-width: 350px;
+  margin: 100px auto;
 }
 </style>
