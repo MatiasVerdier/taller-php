@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="Dashboard">
     <Row type="flex" justify="center">
-      <Col span="16">
+      <Col :xs="20" :lg="16">
         <Row>
           <Col span="24">
             <h1 class="empty-dashboard-title">
@@ -10,42 +10,42 @@
           </Col>
         </Row>
         
-        <Row class="content-selector" gutter="20">
+        <Row class="content-selector" :gutter="20">
           <Col span="24">
-            <h2 style="font-size:26px;text-align:center;">Comienza con alguna de estas opciones</h2>
+            <h2 class="content-selector-title">Comienza con alguna de estas opciones</h2>
           </Col>
           
-          <Col span="8">
+          <Col :xs="24" :sm="12" :lg="8">
             <Card class="content-type-card">
               <Icon type="document-text" size="64"></Icon>
               <h2>Texto</h2>
             </Card>
           </Col>
-          <Col span="8">
+          <Col :xs="24" :sm="12" :lg="8">
             <Card class="content-type-card">
               <Icon type="earth" size="64"></Icon>
               <h2>Sitio Web</h2>
             </Card>
           </Col>
-          <Col span="8">
+          <Col :xs="24" :sm="12" :lg="8">
             <Card class="content-type-card">
               <Icon type="social-youtube" size="64"></Icon>
               <h2>Video</h2>
             </Card>
           </Col>
-          <Col span="8">
+          <Col :xs="24" :sm="12" :lg="8">
             <Card class="content-type-card">
               <Icon type="code" size="64"></Icon>
               <h2>Codigo</h2>
             </Card>
           </Col>
-          <Col span="8">
+          <Col :xs="24" :sm="12" :lg="8">
             <Card class="content-type-card">
               <Icon type="clipboard" size="64"></Icon>
               <h2>Listas</h2>
             </Card>
           </Col>
-          <Col span="8">
+          <Col :xs="24" :sm="12" :lg="8">
             <Card class="content-type-card">
               <Icon type="ios-mic" size="64"></Icon>
               <h2>Podcasts</h2>
@@ -69,6 +69,10 @@ export default {
 }
 .content-selector {
   margin-top: 50px;
+}
+.content-selector-title {
+  font-size: 26px;
+  text-align: center;
 }
 .ivu-card {
   margin: 10px 0;
