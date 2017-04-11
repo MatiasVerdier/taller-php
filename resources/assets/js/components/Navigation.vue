@@ -59,6 +59,7 @@ export default {
 .main-navigation {
   position: fixed;
   width: 100%;
+  z-index: 100;
 }
 .right-menu {
   float: right;
