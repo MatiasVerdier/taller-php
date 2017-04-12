@@ -11,7 +11,7 @@ class ResourceController extends Controller
   
   public function __construct()
   {
-    $this->middleware('jwt.auth');
+    // $this->middleware('jwt.auth');
   }
   
   /**
@@ -45,7 +45,7 @@ class ResourceController extends Controller
     $resource = Resource::create([
         'title' => $data['title'],
         'type' => $data['type'],
-        'description' => $data['content'],
+        'content' => $data['content'],
         'user_id' => $user['id'],
     ]);
     
