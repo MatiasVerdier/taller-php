@@ -4,3 +4,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
 export const GET_USER = 'GET_USER';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+
+export const ADD_RESOURCE = 'ADD_RESOURCE';
+export const ADD_RESOURCE_SUCCESS = 'ADD_RESOURCE_SUCCESS';
+export const ADD_RESOURCE_FAILURE = 'ADD_RESOURCE_FAILURE';

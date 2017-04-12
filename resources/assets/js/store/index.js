@@ -10,6 +10,7 @@ const store = new Vuex.Store({
   state: {
     isAuthenticated: !!localStorage.getItem('token'),
     currentUser: null,
+    resources: [],
   },
   actions,
   getters,

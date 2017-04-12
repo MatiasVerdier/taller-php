@@ -24,6 +24,20 @@ const mutations = {
     Vue.set(state, 'loading', false);
     Vue.set(state, 'currentUser', user);
   },
+  
+  [types.ADD_RESOURCE](state) {
+    Vue.set(state, 'loading', true);
+  },
+  
+  [types.ADD_RESOURCE_SUCCESS](state, resource) {
+    state.resources.push(resource);
+    Vue.set(state, 'loading', false);
+  },
+  
+  [types.ADD_RESOURCE_FAILURE](state, { data }) {
+    Vue.set(state, 'loading', false);
+    Vue.set(state, 'resourceError', data);
+  },
 };
 
 export default mutations;

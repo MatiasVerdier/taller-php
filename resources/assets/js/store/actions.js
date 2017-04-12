@@ -18,3 +18,13 @@ export const getUser = ({ commit }) => {
   commit(types.GET_USER);
   return api.getUser();
 };
+
+export const addResource = ({ commit }, payload) => {
+  commit(types.ADD_RESOURCE);
+  
+  api.addResource(payload)
+    .then(({ data }) => {
+      commit(types.ADD_RESOURCE_SUCCESS, data);
+    })
+    .catch(error => commit(types.ADD_RESOURCE_FAILURE, error.response));
+};
