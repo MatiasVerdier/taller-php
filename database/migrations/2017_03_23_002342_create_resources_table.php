@@ -17,9 +17,10 @@ class CreateResourcesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('type');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->text('content');
             $table->integer('user_id');
+            $table->enum('visibility', ['PUBLIC', 'SHARED', 'PRIVATE'])->default('PRIVATE');
             $table->timestamps();
         });
     }
