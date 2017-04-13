@@ -12,6 +12,13 @@ class Resource extends Model
    * @var array
    */
   protected $guarded = [];
+  
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+  protected $hidden = [];
     
   public function notes()
   {
