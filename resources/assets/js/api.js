@@ -3,6 +3,10 @@ import axios from 'axios';
 const API_ROOT = '/api';
 
 axios.defaults.baseURL = API_ROOT;
+axios.defaults.headers.common = {
+  'X-CSRF-TOKEN': window.Laravel.csrfToken,
+  'X-Requested-With': 'XMLHttpRequest',
+};
 
 // Authentication
 const login = data => axios.post('/login', data);
