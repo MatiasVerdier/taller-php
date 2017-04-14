@@ -15,12 +15,33 @@ class CreateResourcesTable extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
+            $table->enum('type', [
+              'LINK',
+              'MARKDOWN',
+              'CODE'
+            ]);
+            
             $table->string('title');
-            $table->string('type');
             $table->string('description')->nullable();
-            $table->text('content');
+            
+            // Type LINK
+            $table->string('link')->nullable();
+            $table->string('link_type')->nullable();
+            $table->string('link_image')->nullable();
+            $table->string('link_author')->nullable();
+            $table->datetime('link_date')->nullable();
+            
+            // Type MARKDOWN
+            $table->text('markdown')->nullable();
+            
+            // Type CODE
+            $table->text('code')->nullable();
+            $table->string('code_type')->nullable();
+            
             $table->integer('user_id');
             $table->enum('visibility', ['PUBLIC', 'SHARED', 'PRIVATE'])->default('PRIVATE');
+            
+            $table->integer('likes')->default(0);
             $table->timestamps();
         });
     }
