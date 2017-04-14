@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Resource;
 use Illuminate\Http\Request;
-use Validator;
 use JWTAuth;
+use App\Http\Requests\StoreResource;
 
 class ResourceController extends Controller
 {
@@ -31,21 +31,9 @@ class ResourceController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(StoreResource $request)
   {
     $data = request(['title', 'type', 'description', 'link', 'markdown', 'code']);
-    
-    $validator = Validator::make($data, [
-      'title' => 'required',
-      'type' => 'required',
-      'link' => 'url|required_if:type,LINK',
-      'markdown' => 'required_if:type,MARKDOWN',
-      'code' => 'required_if:type,CODE',
-    ]);
-    
-    if ($validator->fails()) {    
-      return response()->json(['errors' => $validator->messages()], 422);
-    }
     
     $user = JWTAuth::parseToken()->authenticate();
     
