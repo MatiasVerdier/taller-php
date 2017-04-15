@@ -14,6 +14,12 @@
 import Navigation from './components/Navigation.vue';
 
 export default {
+  mounted() {
+    this.$Notice.config({
+      top: 80,
+      duration: 3,
+    });
+  },
   components: {
     Navigation,
   },
