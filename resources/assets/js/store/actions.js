@@ -22,9 +22,15 @@ export const getUser = ({ commit }) => {
 export const addResource = ({ commit }, payload) => {
   commit(types.ADD_RESOURCE);
   
-  api.addResource(payload)
-    .then(({ data }) => {
-      commit(types.ADD_RESOURCE_SUCCESS, data);
-    })
-    .catch(error => commit(types.ADD_RESOURCE_FAILURE, error.response));
+  return new Promise((resolve, reject) => {
+    api.addResource(payload)
+      .then(({ data }) => {
+        commit(types.ADD_RESOURCE_SUCCESS, data);
+        resolve(data);
+      })
+      .catch((error) => {
+        commit(types.ADD_RESOURCE_FAILURE, error.response);
+        reject(error.response);
+      });
+  });
 };
