@@ -1,34 +1,31 @@
 <template lang="html">
   <nav class="main-navigation" role="navigation">
-    <Menu mode="horizontal" theme="dark" :active-name="activeRoute" @on-select="onMenuSelect">
+    <el-menu mode="horizontal" theme="dark" :default-active="activeRoute" @select="onMenuSelect">
       <div class="left-menu">
-        <Menu-item name="home">
-          <Icon type="home"></Icon>
+        <el-menu-item index="home">
           Home
-        </Menu-item>
+        </el-menu-item>
         
-        <Menu-item name="explore">
-          <Icon type="eye"></Icon>
+        <el-menu-item index="explore">
           Explorar
-        </Menu-item>
+        </el-menu-item>
       </div>
       
       <div class="right-menu">
         <template v-if="isAuthenticated">
-          <Menu-item name="dashboard">
-            <Icon type="speedometer"></Icon>
+          <el-menu-item index="dashboard">
             Dashboard
-          </Menu-item>
+          </el-menu-item>
           
-          <Menu-item name="logout">
+          <el-menu-item index="logout">
             Logout
-          </Menu-item>
+          </el-menu-item>
         </template>
-        <Menu-item v-else name="login">
+        <el-menu-item v-else index="login">
           Login
-        </Menu-item>
+        </el-menu-item>
       </div>
-    </Menu>
+    </el-menu>
   </nav>
 </template>
 

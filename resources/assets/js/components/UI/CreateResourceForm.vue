@@ -1,108 +1,108 @@
 <template lang="html">
   <div class="CreateResourceForm">
-    <Row class="content-selector" :gutter="20">
-      <Col span="24" v-show="!typeSelected">
+    <el-row class="content-selector" :gutter="20">
+      <el-col :span="24" v-show="!typeSelected">
         <h2 class="content-selector-title">Comienza con alguna de estas opciones</h2>
-      </Col>
+      </el-col>
       
-      <Col :xs="formColxs" :sm="formColsm" :lg="formCollg"
+      <el-col :xs="formColxs" :sm="formColsm" :lg="formCollg"
         v-show="!typeSelected || resource.type === 'LINK'">
-        <Card class="content-type-card" @click.native="selectResourceType('LINK')">
-          <p slot="title">
+        <el-card class="content-type-card" @click.native="selectResourceType('LINK')">
+          <p slot="header">
             Nuevo Sitio Web
           </p>
           
           <div v-show="!typeSelected">
-            <Icon type="earth" size="64"></Icon>
+            <icon name="globe" scale="4"></icon>
           </div>
           
           <div class="content link" v-if="resource.type === 'LINK'">
-            <Form :model="resource" label-position="top">
-              <Form-item label="Titulo">
-                <Input v-model="resource.title" placeholder="De que se trata"></Input>
-              </Form-item>
+            <el-form :model="resource" label-position="top">
+              <el-form-item label="Titulo">
+                <el-input v-model="resource.title" placeholder="De que se trata"></el-input>
+              </el-form-item>
               
-              <Form-item label="Url">
-                <Input v-model="resource.link" placeholder="Inserta tu link"></Input>
-              </Form-item>
-            </Form>
+              <el-form-item label="Url">
+                <el-input v-model="resource.link" placeholder="Inserta tu link"></el-input>
+              </el-form-item>
+            </el-form>
             
-            <button class="ivu-btn" @click="resetForm">
+            <el-button @click="resetForm">
               Cancelar
-            </button>
+            </el-button>
             
-            <button class="ivu-btn ivu-btn-primary" @click="addResource">
+            <el-button type="primary" @click="addResource">
               Guardar
-            </button>
+            </el-button>
           </div>
-        </Card>
-      </Col>
+        </el-card>
+      </el-col>
       
-      <Col :xs="formColxs" :sm="formColsm" :lg="formCollg"
+      <el-col :xs="formColxs" :sm="formColsm" :lg="formCollg"
         v-show="!typeSelected || resource.type === 'MARKDOWN'">
-        <Card class="content-type-card" @click.native="selectResourceType('MARKDOWN')">
+        <el-card class="content-type-card" @click.native="selectResourceType('MARKDOWN')">
           
-          <p slot="title">
+          <p slot="header">
             Nuevo Texto / Markdown
           </p>
           
           <div v-show="!typeSelected">
-            <Icon type="document-text" size="64"></Icon>
+            <icon name="file-text" scale="4"></icon>
           </div>
           
           <div class="content" v-if="resource.type === 'MARKDOWN'">
-            <Form :model="resource" label-position="top">
-              <Form-item label="Titulo">
-                <Input v-model="resource.title" placeholder="De que se trata"></Input>
-              </Form-item>
-            </Form>
+            <el-form :model="resource" label-position="top">
+              <el-form-item label="Titulo">
+                <el-input v-model="resource.title" placeholder="De que se trata"></el-input>
+              </el-form-item>
+            </el-form>
             
             <markdown-editor :value="resource.markdown" @input="updateMarkdown"></markdown-editor>
             
-            <button class="ivu-btn" @click="resetForm">
+            <el-button @click="resetForm">
               Cancelar
-            </button>
+            </el-button>
             
-            <button class="ivu-btn ivu-btn-primary" @click="addResource">
+            <el-button type="primary" @click="addResource">
               Guardar
-            </button>
+            </el-button>
           </div>
-        </Card>
-      </Col>
+        </el-card>
+      </el-col>
       
-      <Col :xs="formColxs" :sm="formColsm" :lg="formCollg"
+      <el-col :xs="formColxs" :sm="formColsm" :lg="formCollg"
         v-show="!typeSelected || resource.type === 'CODE'">
-        <Card class="content-type-card" @click.native="selectResourceType('CODE')">
+        <el-card class="content-type-card" @click.native="selectResourceType('CODE')">
           
-          <p slot="title">
+          <p slot="header">
             Nuevo Snippet de Codigo
           </p>
           
           <div v-show="!typeSelected">
-            <Icon type="code" size="64"></Icon>
+            <icon name="code" scale="4"></icon>
           </div>
           
           <div class="content" v-if="resource.type === 'CODE'">
             
-            <Form :model="resource" label-position="top">
-              <Form-item label="Titulo">
-                <Input v-model="resource.title" placeholder="De que se trata"></Input>
-              </Form-item>
-            </Form>
+            <el-form :model="resource" label-position="top">
+              <el-form-item label="Titulo">
+                <el-input v-model="resource.title" placeholder="De que se trata"></el-input>
+              </el-form-item>
+            </el-form>
             
             <code-editor></code-editor>
             
-            <button class="ivu-btn" @click="resetForm">
+            <el-button @click="resetForm">
               Cancelar
-            </button>
+            </el-button>
             
-            <button class="ivu-btn ivu-btn-primary" @click="addResource">
+            <el-button type="primary" @click="addResource">
               Guardar
-            </button>
+            </el-button>
           </div>
-        </Card>
-      </Col>
-    </Row>    
+        </el-card>
+      </el-col>
+    </el-row>    
   </div>
 </template>
 
@@ -160,11 +160,11 @@ export default {
       this.$store.dispatch('addResource', data)
       .then(() => {
         this.cleanForm();
-        this.$Notice.success({
+        this.$notify.success({
           title: 'Todo salio bien!',
-          desc: 'El recurso se ha creado con exito',
+          message: 'El recurso se ha creado con exito',
         });
-      });
+      }).catch(error => console.log('catch resource', error));
     },
     cleanForm() {
       this.resource.type = '';
@@ -186,19 +186,15 @@ export default {
 </script>
 
 <style lang="css">
-.content-selector {
+/*.content-selector {
   margin-top: 50px;
-}
+}*/
 .content-selector-title {
   font-size: 26px;
   text-align: center;
 }
-.ivu-card {
-  margin: 10px 0;
-}
 .content-type-card {
   text-align: center;
-  transition: all .5s
 }
 .content {
   text-align: left;

@@ -1,34 +1,34 @@
 <template lang="html">
   <div class="Authenticate">
-    <Card class="login-card">
-      <Form :model="form">
-        <h2>Entrar al sitio</h2>
+    <el-card class="login-card">
+      <h2 slot="header">Entrar al sitio</h2>
+      <el-form :model="form">
           
-        <Form-item label="Nombre de usuario" v-if="!form.isLogin">
-          <Input size="large" v-model="form.username" placeholder="Tu nombre de usuario único"></Input>
-        </Form-item>
+        <el-form-item label="Nombre de usuario" v-if="!form.isLogin">
+          <el-input size="large" v-model="form.username" placeholder="Tu nombre de usuario único"></el-input>
+        </el-form-item>
         
-        <Form-item label="Email">
-          <Input size="large" v-model="form.email" placeholder="Tu dirección de correo"></Input>
-        </Form-item>
+        <el-form-item label="Email">
+          <el-input size="large" v-model="form.email" placeholder="Tu dirección de correo"></el-input>
+        </el-form-item>
         
-        <Form-item label="Contraseña">
-          <Input type="password" size="large" v-model="form.password" placeholder="Tu contraseña super secreta"></Input>
-        </Form-item>
+        <el-form-item label="Contraseña">
+          <el-input type="password" size="large" v-model="form.password" placeholder="Tu contraseña super secreta"></el-input>
+        </el-form-item>
         
-        <Row type="flex" justify="center">
+        <el-row type="flex" justify="center">
           <div>
             <a href="#" @click.prevent="form.isLogin = false" v-if="form.isLogin">No tienes cuenta?</a>
             <a href="#" @click.prevent="form.isLogin = true" v-else="form.isLogin">Ya tienes cuenta?</a>
           </div>
-        </Row>
-        <Row type="flex" justify="center">
-          <Button type="primary" @click="login">
+        </el-row>
+        <el-row type="flex" justify="center">
+          <el-button type="primary" @click="login">
             {{buttonText}}
-          </Button>
-        </Row>
-      </Form>
-    </Card>
+          </el-button>
+        </el-row>
+      </el-form>
+    </el-card>
   </div>
 </template>
 

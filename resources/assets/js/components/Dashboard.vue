@@ -1,18 +1,18 @@
 <template lang="html">
   <div class="Dashboard">
-    <Row type="flex" justify="center">
-      <Col :xs="20" :lg="16">
-        <Row>
-          <Col span="24">
+    <el-row type="flex" justify="center">
+      <el-col :xs="20" :lg="16">
+        <!-- <el-row>
+          <el-col span="24">
             <h1 class="empty-dashboard-title">
               Todavía no has agregado ningún material
             </h1>
-          </Col>
-        </Row>
+          </el-col>
+        </el-row> -->
         
         <create-resource-form></create-resource-form>
-      </Col>
-    </Row>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
