@@ -13,7 +13,6 @@
     "laravel-mix": "^0.8.3",
     "simplemde": "^1.11.2",
     "vue": "^2.1.10",
-    "vue-awesome": "^2.2.4",
     "vue-axios": "^2.0.1",
     "vue-router": "^2.3.0",
     "vuex": "^2.2.1"

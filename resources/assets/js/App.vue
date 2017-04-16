@@ -15,10 +15,6 @@ import Navigation from './components/Navigation.vue';
 
 export default {
   mounted() {
-    this.$Notice.config({
-      top: 80,
-      duration: 3,
-    });
   },
   components: {
     Navigation,
@@ -27,6 +23,7 @@ export default {
 </script>
 
 <style scoped>
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 #main {
   padding-top: 60px;
 }
