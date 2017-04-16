@@ -24,4 +24,9 @@ class Resource extends Model
   {
     return $this->hasMany(Note::class);
   }
+  
+  public function owner()
+  {
+    return $this->belongsTo(User::class, 'user_id');
+  }
 }
