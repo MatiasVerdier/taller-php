@@ -14,10 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/resources', 'ResourceController@index');
-Route::post('/resources', 'ResourceController@store')->middleware('jwt.auth');
+Route::post('/resources', 'ResourceController@store');
 Route::get('/resources/{resource}', 'ResourceController@show');
-Route::put('/resources/{resource}', 'ResourceController@update')->middleware('jwt.auth');
-Route::delete('/resources/{resource}', 'ResourceController@destroy')->middleware('jwt.auth');
+Route::put('/resources/{resource}', 'ResourceController@update');
+Route::delete('/resources/{resource}', 'ResourceController@destroy');
 
 Route::post('/register', 'JWTController@register');
 Route::post('/login', 'JWTController@login');

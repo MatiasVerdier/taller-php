@@ -12,7 +12,7 @@ class ResourceController extends Controller
   
   public function __construct()
   {
-    // $this->middleware('jwt.auth');
+    $this->middleware('jwt.auth')->only(['store', 'update', 'destroy']);
   }
   
   /**
@@ -28,7 +28,7 @@ class ResourceController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Http\Requests\StoreResource  $request
    * @return \Illuminate\Http\Response
    */
   public function store(StoreResource $request)
