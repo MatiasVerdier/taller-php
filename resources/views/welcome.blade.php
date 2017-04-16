@@ -8,7 +8,6 @@
       <title>Laravel</title>
 
       <!-- Fonts -->
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,600">
       <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     </head>
     <body>
