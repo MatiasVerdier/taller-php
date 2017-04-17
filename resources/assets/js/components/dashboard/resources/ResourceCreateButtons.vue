@@ -1,30 +1,37 @@
 <template lang="html">
   <el-row class="resource-create-buttons">
-    <el-col :span="7">
-      <el-card class="resource-type-card">
-        <h2>
-          <i class="fa fa-globe"></i>
-          Sitio Web
-        </h2>
-      </el-card>
+    
+    <el-col :span="8">
+      <router-link to="/dashboard/create/link">
+        <el-card class="resource-type-card">
+          <h2>
+            <i class="fa fa-globe"></i>
+            Sitio Web
+          </h2>
+        </el-card>
+      </router-link>
     </el-col>
     
-    <el-col :span="7">
-      <el-card class="resource-type-card">
-        <h2>
-          <i class="fa fa-file-text"></i>
-          Markdown
-        </h2>
-      </el-card>
+    <el-col :span="8">
+      <router-link to="/dashboard/create/markdown">
+        <el-card class="resource-type-card">
+          <h2>
+            <i class="fa fa-file-text"></i>
+            Markdown
+          </h2>
+        </el-card>
+      </router-link>
     </el-col>
     
-    <el-col :span="7">
-      <el-card class="resource-type-card">
-        <h2>
-          <i class="fa fa-code"></i>
-          Snippet
-        </h2>
-      </el-card>
+    <el-col :span="8">
+      <router-link to="/dashboard/create/code">
+        <el-card class="resource-type-card">
+          <h2>
+            <i class="fa fa-code"></i>
+            Snippet
+          </h2>
+        </el-card>
+      </router-link>
     </el-col>
   </el-row>
 </template>
@@ -38,7 +45,11 @@ export default {
 .resource-create-buttons {
   padding: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  
+  div + div {
+    margin-left: 20px;
+  }
   
   .resource-type-card {
     text-align: left;
@@ -63,6 +74,7 @@ export default {
       @media (min-width: 640px) {
         display: block;
         font-size: 2em;
+        margin-right: 0;
         margin-bottom: 10px;
       }
     }

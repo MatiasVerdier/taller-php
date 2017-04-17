@@ -1,5 +1,8 @@
 <template lang="html">
   <el-row class="resource-list">
+    
+    <resource-create-buttons></resource-create-buttons>
+    
     <el-col :span="24">
       <el-tabs>
         <el-tab-pane label="User" name="first">User</el-tab-pane>
@@ -12,8 +15,13 @@
 </template>
 
 <script>
+import ResourceCreateButtons from './ResourceCreateButtons.vue';
+
 export default {
-}
+  components: {
+    ResourceCreateButtons,
+  },
+};
 </script>
 
 <style lang="scss">

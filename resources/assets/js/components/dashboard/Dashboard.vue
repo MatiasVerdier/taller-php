@@ -4,9 +4,9 @@
       <side-bar></side-bar>
       
       <div class="dashboard-main">
-        <resource-create-buttons></resource-create-buttons>
         
-        <resource-list></resource-list>
+        <router-view></router-view>
+        
       </div>
     </div>
   
@@ -17,15 +17,11 @@
 <script>
 import SideBar from './SideBar.vue';
 import ActivitySideBar from './ActivitySideBar.vue';
-import ResourceCreateButtons from './resources/ResourceCreateButtons.vue';
-import ResourceList from './resources/ResourceList.vue';
 
 export default {
   components: {
     SideBar,
     ActivitySideBar,
-    ResourceCreateButtons,
-    ResourceList,
   },
 };
 </script>
