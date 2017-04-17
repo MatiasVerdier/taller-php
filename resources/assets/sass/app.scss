@@ -4,7 +4,15 @@
 @import "reset";
 
 body {
-  background-color: $gray-lighter;
   color: #5e6d82;
   font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+}
+
+a {
+  color: #1b86d5;
+  text-decoration: none;
+  
+  &:hover {
+    color: #20a0ff;
+  }
 }
