@@ -14,8 +14,8 @@
       <div class="right-menu">
         <template v-if="isAuthenticated">
           <el-dropdown trigger="click" @command="dropdownSelect">
-            <div class="el-menu-item">
-              <img class="user-avatar" src="https://avatars0.githubusercontent.com/u/5176883?v=3&s=40">
+            <div class="el-menu-item user-menu">
+              <gravatar :email="currentUser.email"></gravatar>
               <span class="user-name">{{ currentUser.username }}</span>
             </div>
             <el-dropdown-menu slot="dropdown">
@@ -78,13 +78,11 @@ export default {
 .right-menu {
   float: right;
 }
-.user-avatar {
-  vertical-align: middle;
-  border-radius: 50%;
-  width: 30px;
-  margin: 0 10px;
+.user-menu {
+  padding: 0;
 }
 .user-name {
   display: inline-block;
+  margin-right: 20px;
 }
 </style>
