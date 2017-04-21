@@ -53,6 +53,13 @@ export default {
   
   .resource-type-card {
     text-align: left;
+    box-shadow: none;
+    color: #727c88;
+    
+    &:hover {
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+      color: #4f5c69;
+    }
     
     @media (min-width: 640px) {
       text-align: center;
