@@ -17,15 +17,16 @@
         </div>
         
         <el-row type="flex" justify="center">
-          <div>
-            <a href="#" @click.prevent="form.isLogin = false" v-if="form.isLogin">No tienes cuenta?</a>
-            <a href="#" @click.prevent="form.isLogin = true" v-else="form.isLogin">Ya tienes cuenta?</a>
-          </div>
-        </el-row>
-        <el-row type="flex" justify="center">
           <button type="submit" class="el-button el-button--primary">
             {{buttonText}}
           </button>
+        </el-row>
+        
+        <el-row type="flex" justify="center">
+          <div class="form-links">
+            <a href="#" @click.prevent="form.isLogin = false" v-if="form.isLogin">No tienes cuenta?</a>
+            <a href="#" @click.prevent="form.isLogin = true" v-else="form.isLogin">Ya tienes cuenta?</a>
+          </div>
         </el-row>
       </form>
     </el-card>
@@ -86,5 +87,8 @@ export default {
 }
 .input-field {
   margin-bottom: 20px;
+}
+.form-links {
+  margin-top: 20px;
 }
 </style>
