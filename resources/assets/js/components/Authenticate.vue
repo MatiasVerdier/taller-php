@@ -2,19 +2,19 @@
   <div class="Authenticate">
     <el-card class="login-card">
       <h2 slot="header">Entrar al sitio</h2>
-      <el-form :model="form">
+      <form @submit.prevent="login">
           
-        <el-form-item label="Nombre de usuario" v-if="!form.isLogin">
-          <el-input size="large" v-model="form.username" placeholder="Tu nombre de usuario único"></el-input>
-        </el-form-item>
+        <div v-if="!form.isLogin" class="input-field">
+          <el-input v-if="!form.isLogin" size="large" v-model="form.username" placeholder="Tu nombre de usuario único"></el-input>
+        </div>
         
-        <el-form-item label="Email">
-          <el-input size="large" v-model="form.email" placeholder="Tu dirección de correo"></el-input>
-        </el-form-item>
+        <div class="input-field">
+          <el-input size="large" v-model="form.email" required placeholder="Tu dirección de correo"></el-input>
+        </div>
         
-        <el-form-item label="Contraseña">
-          <el-input type="password" size="large" v-model="form.password" placeholder="Tu contraseña super secreta"></el-input>
-        </el-form-item>
+        <div class="input-field">
+          <el-input type="password" size="large" v-model="form.password" required placeholder="Tu contraseña super secreta" @keyup.enter=""></el-input>
+        </div>
         
         <el-row type="flex" justify="center">
           <div>
@@ -23,11 +23,11 @@
           </div>
         </el-row>
         <el-row type="flex" justify="center">
-          <el-button type="primary" @click="login">
+          <button type="submit" class="el-button el-button--primary">
             {{buttonText}}
-          </el-button>
+          </button>
         </el-row>
-      </el-form>
+      </form>
     </el-card>
   </div>
 </template>
@@ -53,6 +53,9 @@ export default {
   },
   methods: {
     login() {
+      if (this.form.email === '' || this.form.password === '') return;
+      if (!this.form.isLogin && this.form.username === '') return;
+      
       this.$store.dispatch('login', {
         username: this.form.username,
         email: this.form.email,
@@ -80,5 +83,8 @@ export default {
 .login-card {
   max-width: 350px;
   margin: 100px auto;
+}
+.input-field {
+  margin-bottom: 20px;
 }
 </style>
