@@ -24,13 +24,29 @@ export const addResource = ({ commit }, payload) => {
   
   return new Promise((resolve, reject) => {
     api.addResource(payload)
-      .then(({ data }) => {
-        commit(types.ADD_RESOURCE_SUCCESS, data);
-        resolve(data);
+      .then((response) => {
+        commit(types.ADD_RESOURCE_SUCCESS, response.data);
+        resolve(response);
       })
       .catch((error) => {
         commit(types.ADD_RESOURCE_FAILURE, error.response);
-        reject(error.response);
+        reject(error);
+      });
+  });
+};
+
+export const getMyResources = ({ commit }, payload) => {
+  commit(types.GET_MY_RESOURCES);
+  
+  return new Promise((resolve, reject) => {
+    api.getMyResources(payload)
+      .then((response) => {
+        commit(types.GET_MY_RESOURCES_SUCCESS, response.data);
+        resolve(response);
+      })
+      .catch((error) => {
+        commit(types.GET_MY_RESOURCES_FAILURE, error.response);
+        reject(error);
       });
   });
 };
