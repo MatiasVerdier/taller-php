@@ -8,29 +8,7 @@
         <el-tab-pane label="Mis Resursos" name="my-resources">
           <el-row class="flex-container">
             <el-col :xs="24" :sm="12" :lg="6" v-for="resource in myResources" class="flex-item">
-              <el-card class="card-resource">
-                <div slot="header">
-                  <h2 style="font-size: 18px;">
-                    {{ resource.title }}
-                  </h2>
-                  <i style="position: absolute; top: 10px; right: 10px;" class="fa fa-gear"></i>
-                </div>
-                
-                <p style="word-break: break-all;">
-                  <template v-if="resource.type === 'LINK'">
-                    {{ resource.link }}
-                  </template>
-                  
-                  <template v-else-if="resource.type === 'MARKDOWN'">
-                    {{ resource.markdown }}
-                  </template>
-                  
-                  <template v-else="resource.type === 'CODE'">
-                    {{ resource.code }}
-                  </template>
-                </p>
-                
-              </el-card>
+              <resource-item :resource="resource"></resource-item>
             </el-col>
           </el-row>
         </el-tab-pane>
@@ -46,6 +24,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import ResourceCreateButtons from './ResourceCreateButtons.vue';
+import ResourceItem from './ResourceItem.vue';
 
 export default {
   mounted() {
@@ -59,6 +38,7 @@ export default {
   },
   components: {
     ResourceCreateButtons,
+    ResourceItem,
   },
 };
 </script>
