@@ -29,4 +29,9 @@ class Resource extends Model
   {
     return $this->belongsTo(User::class, 'user_id');
   }
+  
+  public function tags()
+  {
+    return $this->hasMany(Tag::class);
+  }
 }
