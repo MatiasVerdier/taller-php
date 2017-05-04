@@ -57,11 +57,6 @@ export default {
       display: flex; 
       padding: 0.5em;
       flex-direction: column;
-      
-      .card-resource {
-        flex: 1 0 auto;
-        position: relative;
-      }
     }
   }
   

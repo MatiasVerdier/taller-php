@@ -1,13 +1,10 @@
 <template lang="html">
   <el-card class="card-resource">
-    <div slot="header">
-      <h2 style="font-size: 18px;">
-        {{ resource.title }}
-      </h2>
-      <i style="position: absolute; top: 10px; right: 10px;" class="fa fa-gear"></i>
-    </div>
+    <h2 class="title">
+      {{ resource.title }}
+    </h2>
     
-    <p style="word-break: break-all;">
+    <p class="resource-content">
       <template v-if="resource.type === 'LINK'">
         {{ resource.link }}
       </template>
@@ -35,5 +32,24 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.card-resource {
+  flex: 1 0 auto;
+  position: relative;
+  box-shadow: none;
+  
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+    cursor: pointer;
+  }
+}
+.resource-content {
+  word-break: break-all;
+  max-height: 150px;
+  overflow: hidden;
+}
+.title {
+  font-size: 18px;
+  margin-bottom: 1em;
+}
 </style>
