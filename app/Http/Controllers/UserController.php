@@ -19,6 +19,6 @@ class UserController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function resources(User $user) {
-    return $user->resources()->with('owner')->get();
+    return $user->resources()->with('owner')->orderBy('created_at', 'desc')->get();
   }
 }
