@@ -4,6 +4,7 @@ import Authenticate from './components/Authenticate.vue';
 import Dashboard from './components/dashboard/Dashboard.vue';
 import ResourceList from './components/dashboard/resources/ResourceList.vue';
 import ResourceCreate from './components/dashboard/resources/ResourceCreate.vue';
+import ResourceShow from './components/dashboard/resources/ResourceShow.vue';
 
 const routes = [
   { path: '/', name: 'home', component: Home, meta: { onlyGuest: true } },
@@ -23,6 +24,9 @@ const routes = [
       },
       {
         path: 'create/:type', component: ResourceCreate,
+      },
+      {
+        path: 'show/:id', name: 'show', component: ResourceShow, props: true,
       },
     ],
   },

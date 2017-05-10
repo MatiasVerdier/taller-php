@@ -50,3 +50,15 @@ export const getMyResources = ({ commit }, payload) => {
       });
   });
 };
+
+export const getResource = ({ commit }, payload) => {
+  commit(types.GET_RESOURCE);
+  
+  return api.getResource(payload)
+    .then((response) => {
+      commit(types.GET_RESOURCE_SUCCESS, response.data);
+    })
+    .catch((error) => {
+      commit(types.GET_RESOURCE_FAILURE, error.response);
+    });
+};

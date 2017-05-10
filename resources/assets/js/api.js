@@ -23,6 +23,7 @@ const getUser = () => axios.get('/me');
 // Resources
 const addResource = data => axios.post('/resources', data);
 const getMyResources = userid => axios.get(`/user/${userid}/resources`);
+const getResource = resourceid => axios.get(`/resources/${resourceid}`);
 
 export default {
   login,
@@ -31,4 +32,5 @@ export default {
   getUser,
   addResource,
   getMyResources,
+  getResource,
 };

@@ -1,5 +1,5 @@
 <template lang="html">
-  <el-card class="card-resource">
+  <el-card class="card-resource" @click.native="showResource">
     <h2 class="title">
       {{ resource.title }}
     </h2>
@@ -27,6 +27,16 @@ export default {
     resource: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    showResource() {
+      this.$router.push({
+        name: 'show',
+        params: {
+          id: this.resource.id,
+        },
+      });
     },
   },
 };
