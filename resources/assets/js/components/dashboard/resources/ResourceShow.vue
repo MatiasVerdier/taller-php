@@ -1,11 +1,14 @@
 <template lang="html">
-  <div>
-    <h1>{{ id }}</h1>
+  <div class="resource-details">
+    <router-link to="/dashboard">Volver</router-link>
+    
+    <h1 class="title">{{ currentResource.title }}</h1>
+    
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   mounted() {
@@ -16,11 +19,21 @@ export default {
       required: true,
     },
   },
+  computed: {
+    ...mapGetters(['currentResource']),
+  },
   methods: {
     ...mapActions(['getResource']),
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.resource-details {
+  padding: 20px;
+  
+  .title {
+    font-size: 2em;
+  }
+}
 </style>
