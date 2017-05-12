@@ -26,7 +26,6 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import MarkdownEditor from '../../UI/MarkdownEditor.vue';
 
 export default {
   mounted() {
@@ -42,9 +41,6 @@ export default {
   },
   methods: {
     ...mapActions(['getResource']),
-  },
-  components: {
-    MarkdownEditor,
   },
 };
 </script>

@@ -40,7 +40,7 @@
               </el-form-item>
             </el-form>
             
-            <markdown-editor :value="resource.markdown"></markdown-editor>
+            <markdown-editor :value="resource.markdown" :isEditing="true"></markdown-editor>
             
             <el-button @click="backToList">
               Cancelar
@@ -89,9 +89,6 @@
 </template>
 
 <script>
-import MarkdownEditor from '../../UI/MarkdownEditor.vue';
-import CodeEditor from '../../UI/CodeEditor.vue';
-
 export default {
   data() {
     return {
@@ -145,10 +142,6 @@ export default {
     backToList() {
       this.$router.push({ name: 'resource-list' });
     },
-  },
-  components: {
-    MarkdownEditor,
-    CodeEditor,
   },
 };
 </script>

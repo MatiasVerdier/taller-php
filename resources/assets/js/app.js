@@ -6,11 +6,19 @@ import locale from 'element-ui/lib/locale/lang/es';
 import App from './App.vue';
 import store from './store';
 import router from './router';
-import Gravatar from './components/Gravatar.vue';
 
+// Global components
+import Gravatar from './components/Gravatar.vue';
+import MarkdownEditor from './components/UI/MarkdownEditor.vue';
+import CodeEditor from './components/UI/CodeEditor.vue';
+
+Vue.component('gravatar', Gravatar);
+Vue.component('markdown-editor', MarkdownEditor);
+Vue.component('code-editor', CodeEditor);
+
+// Plugins
 Vue.use(ElementUI, { locale });
 Vue.use(VueAxios, axios);
-Vue.component('gravatar', Gravatar);
 
 /* eslint no-new: "off" */
 new Vue({
