@@ -62,3 +62,7 @@ export const getResource = ({ commit }, payload) => {
       commit(types.GET_RESOURCE_FAILURE, error.response);
     });
 };
+
+export const unauthenticated = ({ commit }) => {
+  commit(types.UNAUTHENTICATED);
+};

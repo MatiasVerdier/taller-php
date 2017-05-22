@@ -15,6 +15,15 @@ import Navigation from './components/Navigation.vue';
 
 export default {
   mounted() {
+    this.axios.interceptors.response.use(response => response
+    , (error) => {
+      if (error.response.status === 401) {
+        localStorage.removeItem('token');
+        this.$store.dispatch('unauthenticated');
+        this.$router.push({ name: 'login' });
+      }
+      return Promise.reject(error);
+    });
   },
   components: {
     Navigation,

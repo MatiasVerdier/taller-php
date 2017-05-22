@@ -66,6 +66,11 @@ const mutations = {
     Vue.set(state, 'loading', false);
     Vue.set(state, 'error', error);
   },
+  
+  [types.UNAUTHENTICATED](state) {
+    Vue.set(state, 'isAuthenticated', false);
+    Vue.set(state, 'currentUser', null);
+  },
 };
 
 export default mutations;
