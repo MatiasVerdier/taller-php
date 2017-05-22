@@ -28,7 +28,11 @@ import ResourceItem from './ResourceItem.vue';
 
 export default {
   mounted() {
-    this.getMyResources(this.currentUser.id);
+    this.$watch('currentUser', (user) => {
+      if (user) {
+        this.getMyResources(user.id);
+      }
+    });
   },
   methods: {
     ...mapActions(['getMyResources']),
