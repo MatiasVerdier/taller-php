@@ -33,6 +33,10 @@ export default {
         this.getMyResources(user.id);
       }
     });
+    
+    if (this.currentUser) {
+      this.getMyResources(this.currentUser.id);
+    }
   },
   methods: {
     ...mapActions(['getMyResources']),
