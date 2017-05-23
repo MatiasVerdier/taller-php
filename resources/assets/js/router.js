@@ -10,15 +10,24 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const authToken = localStorage.getItem('token');
+  
   if (to.meta.requireAuth) {
-    const authToken = localStorage.getItem('token');
-    
     if (authToken) {
       next();
     } else {
       next({ name: 'login' });
     }
   }
+  
+  if (to.meta.onlyGuest) {
+    if (authToken) {
+      next({ name: 'dashboard' });
+    } else {
+      next();
+    }
+  }
+  
   next();
 });
 
