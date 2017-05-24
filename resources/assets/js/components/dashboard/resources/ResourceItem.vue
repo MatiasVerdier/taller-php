@@ -10,7 +10,7 @@
       </template>
       
       <template v-else-if="resource.type === 'MARKDOWN'">
-        {{ resource.markdown }}
+        <markdown-editor :value="resource.markdown" :isEditing="false" :isSmall="true"></markdown-editor>
       </template>
       
       <template v-else="resource.type === 'CODE'">
