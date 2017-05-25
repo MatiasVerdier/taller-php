@@ -8,7 +8,7 @@
       <template v-if="resource.type === 'LINK'">
         <div class="link-image" v-bind:style="{ backgroundImage: `url(${linkImage})` }"></div>
         <div class="link-href">
-          <a :href="resource.link" target="_blank" rel="noopener">Visitar sitio</a>
+          <a :href="resource.link" @click.stop="" target="_blank" rel="noopener">Visitar sitio</a>
         </div>
       </template>
       
