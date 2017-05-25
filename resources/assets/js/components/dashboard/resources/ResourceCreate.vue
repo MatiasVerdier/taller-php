@@ -40,7 +40,7 @@
               </el-form-item>
             </el-form>
             
-            <markdown-editor :value="resource.markdown" :isEditing="true"></markdown-editor>
+            <markdown-editor :value="resource.markdown" @input="onInput" :isEditing="true"></markdown-editor>
             
             <el-button @click="backToList">
               Cancelar
@@ -119,6 +119,9 @@ export default {
     },
   },
   methods: {
+    onInput(value) {
+      this.resource.markdown = value;
+    },
     addResource() {
       const { type } = this;
       const data = {
