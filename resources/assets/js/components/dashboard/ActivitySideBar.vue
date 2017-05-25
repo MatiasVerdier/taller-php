@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="ActivitySideBar">
     <el-row style="padding:20px;">
-      <el-col :span="24" v-for="n in 10">
+      <el-col :span="24" v-for="n in 10" :key="n">
         <el-alert
           title="texto de prueba"
           type="success"

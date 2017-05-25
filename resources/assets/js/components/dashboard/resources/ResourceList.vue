@@ -7,7 +7,7 @@
       <el-tabs value="my-resources">
         <el-tab-pane label="Mis Resursos" name="my-resources">
           <el-row class="flex-container">
-            <el-col :xs="24" :sm="12" :lg="6" v-for="resource in myResources" class="flex-item">
+            <el-col :xs="24" :sm="12" :lg="6" v-for="resource in myResources" class="flex-item" :key="resource.id">
               <resource-item :resource="resource"></resource-item>
             </el-col>
           </el-row>
