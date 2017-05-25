@@ -3,6 +3,16 @@
     <el-card class="login-card">
       <h2 slot="header">Entrar al sitio</h2>
       <form @submit.prevent="login">
+        <div class="input-field">
+          <el-alert
+            v-show="loginError"
+            :title="errorTitle"
+            type="error"
+            :description="errorDescription"
+            show-icon
+            :closable="true">
+          </el-alert>
+        </div>
           
         <div v-if="!form.isLogin" class="input-field">
           <el-input v-if="!form.isLogin" size="large" v-model="form.username" placeholder="Tu nombre de usuario único"></el-input>
@@ -17,7 +27,8 @@
         </div>
         
         <el-row type="flex" justify="center">
-          <button type="submit" class="el-button el-button--primary">
+          <button type="submit" v-bind:class="{ 'is-loading': isLoading}" class="el-button el-button--primary">
+            <i v-show="isLoading" class="el-icon-loading"></i>
             {{buttonText}}
           </button>
         </el-row>
@@ -34,6 +45,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import * as types from '../store/mutation-types';
 
 export default {
@@ -49,8 +61,25 @@ export default {
   },
   computed: {
     buttonText() {
+      if (this.isLoading) {
+        return 'Cargando';
+      }
       return this.form.isLogin ? 'Entrar' : 'Crear cuenta';
     },
+    errorTitle() {
+      return this.form.isLogin ? 'Error de autenticacion' : 'Error al registrarse';
+    },
+    errorDescription() {
+      const error = this.loginError ? this.loginError.error : '';
+      let errorMessage = '';
+      
+      if (error === 'invalid_credentials') {
+        errorMessage = 'El email y/o la contraseña son incorrectos';
+      }
+      
+      return errorMessage;
+    },
+    ...mapGetters(['isLoading', 'loginError']),
   },
   methods: {
     login() {
