@@ -1,7 +1,13 @@
 <template lang="html">
   <el-menu default-active="2" class="SideBar">
-    <el-menu-item index="2">Navigator Two</el-menu-item>
-    <el-menu-item index="3">Navigator Three</el-menu-item>
+    <el-menu-item index="2">
+      <i class="el-icon-menu"></i>
+      Dashboard
+    </el-menu-item>
+    <el-menu-item index="3">
+      <i class="fa fa-user" style="margin-right:10px;"></i>
+      Perfil
+    </el-menu-item>
   </el-menu>
 </template>
 

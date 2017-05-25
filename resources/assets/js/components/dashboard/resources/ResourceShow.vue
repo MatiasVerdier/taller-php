@@ -3,7 +3,10 @@
     <div class="content" v-if="!isLoading && currentResource">
       <router-link to="/dashboard">Volver</router-link>
       
-      <h1 class="title">{{ currentResource.title }}</h1>
+      <div class="actions-container">
+        <h1 class="title">{{ currentResource.title }}</h1>
+        <el-button type="primary" class="edit-button" icon="edit">Editar</el-button>
+      </div>
       
       <div class="body">
         <template v-if="currentResource.type === 'LINK'">
@@ -49,13 +52,25 @@ export default {
 .resource-details {
   padding: 20px;
   
+  .actions-container {
+    margin: .5em 0;
+  }
+  
+  .body {
+    padding: 20px 0;
+  }
+  
   .title {
     font-size: 2em;
-    margin: .5em 0;
+    display: inline-block;
   }
   
   .loading {
     min-height: 40vh;
+  }
+  
+  .edit-button {
+    float: right;
   }
 }
 </style>
