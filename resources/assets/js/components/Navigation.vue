@@ -13,27 +13,14 @@
       
       <div class="right-menu">
         <template v-if="isAuthenticated">
-          <el-dropdown trigger="click" @command="dropdownSelect">
-            <div v-if="currentUser" class="el-menu-item user-menu">
-              <gravatar :email="currentUser.email"></gravatar>
-              <span class="user-name">{{ currentUser.username }}</span>
-              <i class="fa fa-cogs"></i>
-            </div>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="dashboard">
-                <i class="fa fa-dashboard"></i>
-                Dashboard
-              </el-dropdown-item>
-              <el-dropdown-item>Action 2</el-dropdown-item>
-              <el-dropdown-item>Action 3</el-dropdown-item>
-              <el-dropdown-item>Action 4</el-dropdown-item>
-              <el-dropdown-item divided command="logout">
-                Logout
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-
+          <div v-if="currentUser" class="el-menu-item user-menu" @click="onMenuLogout">
+            <gravatar :email="currentUser.email"></gravatar>
+            <span class="user-name">{{ currentUser.username }}</span>
+            
+            <i class="fa fa-sign-out"></i>
+          </div>
         </template>
+        
         <el-menu-item v-else index="login">
           Login
         </el-menu-item>
@@ -58,6 +45,10 @@ export default {
       } else {
         this.$router.push({ name: command });
       }
+    },
+    onMenuLogout() {
+      this.logout();
+      this.$router.push({ name: 'login' });
     },
   },
   computed: {
