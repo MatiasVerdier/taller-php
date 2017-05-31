@@ -1,4 +1,8 @@
-# Taller PHP 2017
+# Taller PHP 2017 - Backend
+
+> Ahora el código frontend esta separado en un [nuevo repositorio](https://github.com/MatiasVerdier/taller-php-front).
+
+Probar aplicación en [taller-php.matiasverdier.com](https://taller-php.matiasverdier.com)
 
 ### Instrucciones
 
