@@ -26,3 +26,15 @@ Route::post('/logout', 'JWTController@logout');
 Route::get('/me', 'JWTController@getUser');
 
 Route::get('/user/{user}/resources', 'UserController@resources');
+
+
+/*
+Followers endpoints
+*/
+
+
+// Follow user
+Route::post('/following/add', 'UserController@follow');
+
+// Unfollow user
+Route::post('/following/remove', 'UserController@unfollow');
