@@ -36,7 +36,7 @@ class ResourceController extends Controller
       ->latest()
       ->get();
     } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-      return $public->with('owner')->get();
+      return $public->with('owner')->latest()->get();
     }
   }
 
