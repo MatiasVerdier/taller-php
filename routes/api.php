@@ -24,6 +24,7 @@ Route::post('/login', 'JWTController@login');
 Route::post('/logout', 'JWTController@logout');
 
 Route::get('/me', 'JWTController@getUser');
+Route::get('/profile', 'UserController@profile');
 
 Route::get('/user/{user}/resources', 'UserController@resources');
 

@@ -50,4 +50,21 @@ class UserController extends Controller
     
     return $user->following()->get();
   }
+  
+  /**
+   * Get user profile
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function profile(Request $request) {
+    $user = JWTAuth::parseToken()->authenticate();
+    
+    $result = array(
+      'user' => $user,
+      'followers' => $user->followers()->get(),
+      'following' => $user->following()->get(),
+    );
+    
+    return $result;
+  }
 }
