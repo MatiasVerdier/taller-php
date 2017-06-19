@@ -97,4 +97,43 @@ class ResourceController extends Controller
   {
       //
   }
+  
+  /**
+   * Update metadata of the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Resource  $resource
+   * @return \Illuminate\Http\Response
+   */
+  public function updateMetadata(Request $request, Resource $resource)
+  {
+    $videoPublishers = [
+      'youtube',
+      'vimeo',
+      'dailymotion'
+    ];
+    
+    $data = $request->only([
+      'title',
+      'url',
+      'author',
+      'date',
+      'description',
+      'image',
+      'publisher',
+    ]);
+    
+    $resource->fill([
+      'link_image' => $data['image'],
+      'description' => $data['description']
+    ]);
+    
+    if (array_search(strtolower($data['publisher']), $videoPublishers) !== false) {
+      $resource->link_type = 'video';
+    }
+    
+    $resource->save();
+    
+    return $resource;
+  }
 }

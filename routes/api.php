@@ -19,6 +19,8 @@ Route::get('/resources/{resource}', 'ResourceController@show');
 Route::put('/resources/{resource}', 'ResourceController@update');
 Route::delete('/resources/{resource}', 'ResourceController@destroy');
 
+Route::put('/resources/metadata/{resource}', 'ResourceController@updateMetadata');
+
 Route::post('/register', 'JWTController@register');
 Route::post('/login', 'JWTController@login');
 Route::post('/logout', 'JWTController@logout');
