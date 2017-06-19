@@ -95,7 +95,14 @@ class ResourceController extends Controller
    */
   public function destroy(Resource $resource)
   {
-      //
+    $user = JWTAuth::parseToken()->authenticate();
+    
+    if ($resource->owner == $user) {
+      $resource->delete();
+      return response()->json(['message' => 'successfully_deleted'], 200);
+    } else {
+      return response()->json(['error' => 'insufficient_permissions'], 403);
+    }
   }
   
   /**
