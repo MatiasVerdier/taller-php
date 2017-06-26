@@ -61,7 +61,9 @@ class JWTController extends Controller
     } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
       return response()->json(['token_absent'], $e->getStatusCode());
     }
-
+    
+    $user['following'] = $user->following()->get();
+    
     return $user;
   }
   
