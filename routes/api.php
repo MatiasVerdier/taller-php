@@ -29,6 +29,7 @@ Route::get('/me', 'JWTController@getUser');
 Route::get('/profile', 'UserController@profile');
 
 Route::get('/user/{user}/resources', 'UserController@resources');
+Route::get('/user/{user}/info', 'UserController@userInfo');
 
 
 /*

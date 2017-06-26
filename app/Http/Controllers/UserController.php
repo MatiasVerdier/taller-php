@@ -10,7 +10,7 @@ class UserController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('jwt.auth');
+    $this->middleware('jwt.auth')->except(['userInfo']);
   }
   
   
@@ -63,8 +63,23 @@ class UserController extends Controller
       'user' => $user,
       'followers' => $user->followers()->get(),
       'following' => $user->following()->get(),
+      'resources' => $user->resources()->get(),
     );
     
     return $result;
+  }
+  
+  /**
+   * Get user info
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function userInfo(Request $request, User $user) {
+    return array(
+      'user' => $user,
+      'followers' => $user->followers()->get(),
+      'following' => $user->following()->get(),
+      'resources' => $user->resources()->where('visibility', 'PUBLIC')->count(),
+    );
   }
 }
