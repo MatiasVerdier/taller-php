@@ -28,8 +28,8 @@ Route::post('/logout', 'JWTController@logout');
 Route::get('/me', 'JWTController@getUser');
 Route::get('/profile', 'UserController@profile');
 
-Route::get('/user/{user}/resources', 'UserController@resources');
-Route::get('/user/{user}/info', 'UserController@userInfo');
+Route::get('/users/{user}/resources', 'UserController@resources');
+Route::get('/users/{user}/info', 'UserController@userInfo');
 
 
 /*
