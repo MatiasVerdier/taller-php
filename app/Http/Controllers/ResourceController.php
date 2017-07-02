@@ -72,8 +72,27 @@ class ResourceController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function show(Resource $resource)
-  {
-    return $resource;
+  {  
+    if ($resource->visibility === 'PUBLIC') {
+      return $resource;
+    } else {
+      try {
+        if ($resource->visibility === 'SHARED') {
+          $user = JWTAuth::parseToken()->authenticate();
+          $isFollower = $resource->owner->followers()->where('follower_id', $user->id)->count() === 1;
+          
+          if ($resource->owner == $user || $isFollower) {
+            return $resource;
+          } else {
+            return response()->json(['error' => 'insufficient_permissions'], 403);
+          }
+        } else {
+          return response()->json(['error' => 'insufficient_permissions'], 403);
+        }
+      } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+        return response()->json(['error' => 'insufficient_permissions'], 403);
+      }
+    }
   }
 
   /**
