@@ -77,15 +77,12 @@ class ResourceController extends Controller
       return $resource;
     } else {
       try {
-        if ($resource->visibility === 'SHARED') {
-          $user = JWTAuth::parseToken()->authenticate();
-          $isFollower = $resource->owner->followers()->where('follower_id', $user->id)->count() === 1;
-          
-          if ($resource->owner == $user || $isFollower) {
-            return $resource;
-          } else {
-            return response()->json(['error' => 'insufficient_permissions'], 403);
-          }
+        $user = JWTAuth::parseToken()->authenticate();
+        $isFollower = $resource->owner->followers()->where('follower_id', $user->id)->count() === 1;
+        $isOwner = $resource->owner == $user;
+        
+        if ($isOwner || ($resource->visibility === 'SHARED' && $isFollower)) {
+          return $resource;
         } else {
           return response()->json(['error' => 'insufficient_permissions'], 403);
         }
