@@ -103,10 +103,11 @@ class ResourceController extends Controller
   public function update(UpdateResource $request, Resource $resource)
   {
     $user = JWTAuth::parseToken()->authenticate();
-    $data = request(['title', 'description', 'link', 'markdown', 'code', 'code_type']);
+    $data = request(['title', 'description', 'link', 'markdown', 'code', 'code_type', 'visibility']);
     
     if ($resource->owner == $user) {
       $resource->title = $data['title'];
+      $resource->visibility = $data['visibility'] ?: $resource->visibility;
       $resource->description = $data['description'];
       $resource->link = $data['link'];
       $resource->markdown = $data['markdown'];

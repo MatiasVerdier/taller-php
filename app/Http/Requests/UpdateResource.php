@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateResource extends FormRequest
 {
@@ -28,6 +29,7 @@ class UpdateResource extends FormRequest
       'link' => 'url|required_if:type,LINK',
       'markdown' => 'required_if:type,MARKDOWN',
       'code' => 'required_if:type,CODE',
+      'visibility' => Rule::in(['PRIVATE', 'SHARED', 'PUBLIC']),
     ];
   }
 }
