@@ -6,6 +6,7 @@ use App\Resource;
 use Illuminate\Http\Request;
 use JWTAuth;
 use App\Http\Requests\StoreResource;
+use App\Http\Requests\UpdateResource;
 
 class ResourceController extends Controller
 {
@@ -99,9 +100,25 @@ class ResourceController extends Controller
    * @param  \App\Resource  $resource
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Resource $resource)
+  public function update(UpdateResource $request, Resource $resource)
   {
-    //
+    $user = JWTAuth::parseToken()->authenticate();
+    $data = request(['title', 'description', 'link', 'markdown', 'code', 'code_type']);
+    
+    if ($resource->owner == $user) {
+      $resource->title = $data['title'];
+      $resource->description = $data['description'];
+      $resource->link = $data['link'];
+      $resource->markdown = $data['markdown'];
+      $resource->code = $data['code'];
+      $resource->code_type = $data['code_type'];
+      
+      $resource->save();
+      
+      return $resource;
+    } else {
+      return response()->json(['error' => 'insufficient_permissions'], 403);
+    }
   }
 
   /**
