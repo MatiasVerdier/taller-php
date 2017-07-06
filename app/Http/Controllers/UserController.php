@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Resource;
 use JWTAuth;
 
 class UserController extends Controller
@@ -20,7 +21,33 @@ class UserController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function resources(User $user) {
-    return $user->resources()->with('owner')->orderBy('created_at', 'desc')->get();
+    // return $user->resources()->with('owner')->orderBy('created_at', 'desc')->get();
+    $userResources = $user->resources()->where('visibility', 'PUBLIC');
+    
+    try {
+      $authUser = JWTAuth::parseToken()->authenticate();
+      
+      if ($user == $authUser) {
+        $userResources = $authUser->resources();
+        
+        $followingResources = Resource::whereHas('owner.followers', function ($query) use ($authUser) {
+          return $query->where('id', $authUser->id)->where('visibility', 'SHARED');
+        });
+        
+        return $userResources
+          ->with('owner')
+          ->union($followingResources)
+          ->latest()
+          ->get();
+      } else {
+        return $userResources
+          ->with('owner')
+          ->latest()
+          ->get();
+      }
+    } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+      return $userResources->with('owner')->latest()->get();
+    }
   }
   
   /**

@@ -23,22 +23,7 @@ class ResourceController extends Controller
    */
   public function index()
   {
-    $public = Resource::where('visibility', 'PUBLIC');
-    
-    try {
-      $user = JWTAuth::parseToken()->authenticate()->id;
-      $publicWhitoutUser = $public->where('user_id', '!=' , $user);
-      
-      return Resource::whereHas('owner.followers', function ($query) use ($user) {
-        return $query->where('id', $user)->where('visibility', 'SHARED');
-      })
-      ->with('owner')
-      ->union($publicWhitoutUser)
-      ->latest()
-      ->get();
-    } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-      return $public->with('owner')->latest()->get();
-    }
+    return Resource::where('visibility', 'PUBLIC')->with('owner')->latest()->get();
   }
 
   /**
