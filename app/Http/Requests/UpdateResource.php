@@ -26,7 +26,7 @@ class UpdateResource extends FormRequest
   {
     return [
       'title' => 'required',
-      'link' => 'url|required_if:type,LINK',
+      'link' => 'required_if:type,LINK',
       'markdown' => 'required_if:type,MARKDOWN',
       'code' => 'required_if:type,CODE',
       'visibility' => Rule::in(['PRIVATE', 'SHARED', 'PUBLIC']),
