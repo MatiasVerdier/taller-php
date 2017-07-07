@@ -21,13 +21,30 @@ Route::delete('/resources/{resource}', 'ResourceController@destroy');
 
 Route::put('/resources/metadata/{resource}', 'ResourceController@updateMetadata');
 
+/*
+Notes endpoints
+*/
+
+Route::get('/resources/{resource}/notes', 'NoteController@index');
+Route::post('/resources/{resource}/notes', 'NoteController@store');
+Route::get('/resources/{resource}/notes/{note}', 'NoteController@show');
+Route::put('/resources/{resource}/notes/{note}', 'NoteController@update');
+Route::delete('/resources/{resource}/notes/{note}', 'NoteController@destroy');
+
+/*
+Authentication endpoints
+*/
+
 Route::post('/register', 'JWTController@register');
 Route::post('/login', 'JWTController@login');
 Route::post('/logout', 'JWTController@logout');
-
 Route::get('/me', 'JWTController@getUser');
-Route::get('/profile', 'UserController@profile');
 
+/*
+Users endpoints
+*/
+
+Route::get('/profile', 'UserController@profile');
 Route::get('/users/{user}/resources', 'UserController@resources');
 Route::get('/users/{user}/info', 'UserController@userInfo');
 
