@@ -34,12 +34,13 @@ class ResourceController extends Controller
    */
   public function store(StoreResource $request)
   {
-    $data = request(['title', 'type', 'description', 'link', 'markdown', 'code', 'code_type']);
+    $data = request(['title', 'visibility', 'type', 'description', 'link', 'markdown', 'code', 'code_type']);
     
     $user = JWTAuth::parseToken()->authenticate();
     
     $resource = Resource::create([
         'title' => $data['title'],
+        'visibility' => $data['visibility'],
         'type' => $data['type'],
         'link' => $data['link'],
         'code' => $data['code'],
