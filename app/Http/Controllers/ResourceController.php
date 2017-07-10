@@ -61,6 +61,7 @@ class ResourceController extends Controller
   public function show(Resource $resource)
   {  
     if ($resource->visibility === 'PUBLIC') {
+      $notes = $resource->notes;
       return $resource;
     } else {
       try {
@@ -69,6 +70,7 @@ class ResourceController extends Controller
         $isOwner = $resource->owner == $user;
         
         if ($isOwner || ($resource->visibility === 'SHARED' && $isFollower)) {
+          $notes = $resource->notes;
           return $resource;
         } else {
           return response()->json(['error' => 'insufficient_permissions'], 403);
