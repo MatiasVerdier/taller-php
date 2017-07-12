@@ -85,9 +85,18 @@ class NoteController extends Controller
    * @param  \App\Note  $note
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Note $note)
+  public function update(Request $request, Resource $resource, Note $note)
   {
-      //
+    $user = JWTAuth::parseToken()->authenticate();
+    $data = request(['body']);
+    
+    if ($resource->owner == $user) {
+      $note->body = $data['body'];
+      $note->save();
+      return $note;
+    } else {
+      return response()->json(['error' => 'insufficient_permissions'], 403);
+    }
   }
 
   /**
@@ -96,8 +105,17 @@ class NoteController extends Controller
    * @param  \App\Note  $note
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Note $note, Resource $resource)
+  public function destroy(Resource $resource, Note $note)
   {
-      //
+    if ($note->resource != $resource)
+      return response()->json(['error' => 'bad_request'], 400);
+      
+    $user = JWTAuth::parseToken()->authenticate();
+    if ($resource->owner == $user) {
+      $note->delete();
+      return response()->json(['message' => 'successfully_deleted'], 200);
+    } else {
+      return response()->json(['error' => 'insufficient_permissions'], 403);
+    }
   }
 }
